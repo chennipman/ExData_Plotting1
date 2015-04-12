@@ -26,21 +26,16 @@ data_sub <- data[cond,]
 
 # plot and save the data
 ## Create a png device
-png('plot3.png', 480, 480)
+png('plot4.png', 480, 480)
 
 #Create place for 4 graphs
 par( mfcol=c(2,2) );
 
-#TopLeft
-hist(data_sub$Global_active_power/1000, main = 'Global Active Power', 
-     xlab = 'Global Active Power (kilowatts)', col = 'red')
-
-
-#BottomLeft
+#Topleft
 plot(data_sub$dt, data_sub$Global_active_power/1000, type='l', 
      xlab="", ylab= "Global Active Power (kilowats)")
 
-
+#Bottomleft
 plot(x=data_sub$dt,y=data_sub$Sub_metering_1,
      type="n", ylab="Energy sub metering", xlab="")
 
@@ -54,5 +49,16 @@ points(x=data_sub$dt, y=data_sub$Sub_metering_3,
 legend("topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
        lty = c(1, 1, 1), col=c("Black","Red","Blue"))
 
+
+#Topright
+plot(data_sub$dt, data_sub$Voltage/3, type='l', 
+     xlab="datetime", ylab= "Voltage")
+
+#Bottomright
+plot(data_sub$dt, data_sub$Global_reactive_power/400, type='l', 
+     xlab="datetime",ylab="Global_reactive_power")
+
+
+dev.off()
 
 
